@@ -2,7 +2,7 @@
 
 ## Database design
 
-1. Requirement Collection and Analysis
+1. System Requirement and Analysis
 Read documents and the determine data requirements
 
 2. 
@@ -10,7 +10,7 @@ Read documents and the determine data requirements
 ### Main entities
 
 - Users
-- Theaters
+- Cinemas
 - Halls
 - Movies
 - Showtimes
@@ -19,3 +19,4 @@ Read documents and the determine data requirements
 - Bookings
 - Payments
 - Notifications
+- Pricing
