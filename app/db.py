@@ -11,7 +11,7 @@ def get_db():
     g.db = pymysql.connect(host='localhost',
       port=3306,
       user='root',
-      database='goauth',
+      database='cinema_booking_system',
       password='hiepnv@970012',
       cursorclass=pymysql.cursors.DictCursor)
   
