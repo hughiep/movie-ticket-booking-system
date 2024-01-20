@@ -17,17 +17,21 @@ CREATE SCHEMA IF NOT EXISTS `cinema_booking_system` DEFAULT CHARACTER SET utf8mb
 USE `cinema_booking_system` ;
 
 -- -----------------------------------------------------
--- Table `cinema_booking_system`.`films`
+-- Table `cinema_booking_system`.`movies`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `cinema_booking_system`.`films` ;
+DROP TABLE IF EXISTS `cinema_booking_system`.`movies` ;
 
-CREATE TABLE IF NOT EXISTS `cinema_booking_system`.`films` (
+CREATE TABLE IF NOT EXISTS `cinema_booking_system`.`movies` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `length_min` INT NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `director` VARCHAR(45) NOT NULL,
+  `cast` VARCHAR(255) NOT NULL,
+  `genre` ENUM('Action', 'Comedy', 'Drama', 'Horror', 'Romance') NOT NULL,
+  `release_date` DATETIME NOT NULL,
   `description` MEDIUMTEXT NOT NULL,
+  `poster` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name` (`name` ASC) VISIBLE)
+  UNIQUE INDEX `title` (`title` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -63,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `cinema_booking_system`.`screenings` (
   INDEX `room_id` (`auditorium_id` ASC) VISIBLE,
   CONSTRAINT `screenings_ibfk_1`
     FOREIGN KEY (`film_id`)
-    REFERENCES `cinema_booking_system`.`films` (`id`),
+    REFERENCES `cinema_booking_system`.`movies` (`id`),
   CONSTRAINT `screenings_ibfk_2`
     FOREIGN KEY (`auditorium_id`)
     REFERENCES `cinema_booking_system`.`auditoriums` (`id`))
@@ -174,3 +178,6 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 USE `cinema_booking_system` ;
+
+INSERT INTO `cinema_booking_system`.`movies` (`title`, `poster`, `release_date`, `director`, `genre`, `description`, `cast`)
+VALUES ('Test', '/static/images/movies/poster_mat_vu_ong_5.jpg' ,'2025-01-01 00:00:00', 'Test', 'Action', 'Test', 'Test');
