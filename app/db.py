@@ -8,11 +8,11 @@ import click
 
 def get_db():
   if 'db' not in g:
-    g.db = pymysql.connect(host='localhost',
+    g.db = pymysql.connect(host='movie_booking_db',
+      database='cinema_booking_system',
       port=3306,
       user='root',
-      database='cinema_booking_system',
-      password='hiepnv@970012',
+      password='root',
       cursorclass=pymysql.cursors.DictCursor)
   
   return g.db
@@ -29,7 +29,7 @@ def init_db():
     db = get_db()
 
     # open the schema.sql file
-    with current_app.open_resource('schema.sql') as f:
+    with current_app.open_resource('./db/schema.sql') as f:
       # execute the commands in the schema.sql file
       sql_commands = f.read().decode('utf8')
 

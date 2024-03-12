@@ -37,3 +37,4 @@ def create_app(test_config=None):
     app.register_blueprint(movies.bp)
 
     return app
+

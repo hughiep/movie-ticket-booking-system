@@ -1,14 +1,39 @@
 version: '3.8'
 services:
+  db:
+    # create compose file for db
+    image: mysql:8.3
+    container_name: movie_booking_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cinema_booking_system
+    ports: 
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - movie_booking_network
+      
   flask:
-    image: pyflask
-    container_name: pyflask-docker
+    image: movie-ticket-booking
+    container_name: movie-ticket-booking
     build:
       context: .
-      dockerfile: .Dockerfile
+      dockerfile: ./app/Dockerfile
     ports:
       - "5000:5000"
     volumes:
       - .:/opt/
     environment:
       - PORT=5000
+    depends_on:
+      - db
+    networks:
+      - movie_booking_network
+
+networks:
+  movie_booking_network:
+    driver: bridge
+
+
