@@ -17,3 +17,6 @@
 .venv
 __pycache__
 **/mysql
+
+# Js
+node_modules/
